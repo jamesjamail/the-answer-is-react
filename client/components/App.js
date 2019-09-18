@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { categories } from '../../testdata';
+import Gameboard from './Gameboard';
+import Scoreboard from './Scoreboard';
+import Response from './Response';
 
 export default class App extends Component {
   constructor(props) {
@@ -7,8 +10,8 @@ export default class App extends Component {
 
     this.state = {
       results: categories,
-      currentQuestion: {},
-      answeredQuestions: [],
+      currentQuestion: {question: 'is this working?'},
+      answeredQuestions: ['ur mama'],
       score: 0
     };
   }
@@ -21,9 +24,12 @@ export default class App extends Component {
     return (
       <div id={'app'}>
         What is Reactor 2?
-        {/* Gameboard */}
-        {/* Scoreboard */}
-        {/* Response */}
+        <Gameboard currentQuestion = {this.state.currentQuestion }
+                 answeredQuestions = { this.state.answeredQuestions }
+                 selectQuestion = {function(){return 'this is a placeholder'}}
+                 categories = {this.state.results}/>
+        <Scoreboard />
+        <Response />
       </div>
     );
   }

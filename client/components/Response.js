@@ -16,6 +16,9 @@ export default class Response extends Component {
     // this function should fire when the user fills the response and hits 'enter'
       // Is the user response correct? 
       // yes/no? What should happen?
+      //remove tile
+        //if yes, add points to score
+        //if no, remove points from score
   }
   render(){
     return (

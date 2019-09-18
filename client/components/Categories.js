@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Categories = props => {
+const Categories = ({currentQuestion, answeredQuestions, categories, selectQuestion}) => {
   return (
-    <div id={'categories'} data-testid="categoryList">
+    <div id={'categories'} data-testid="categoryList"
+    currentQuestion = {currentQuestion}
+    selectQuestion = {selectQuestion}
+    answeredQuestions = {answeredQuestions}>
       {/* display all the categories */}
     </div>
   );

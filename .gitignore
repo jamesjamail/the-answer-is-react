@@ -1,12 +1,6 @@
-
-## Mac OSX ##
+##default from template##
+.env
+node_modules
+package_lock.json
 .DS_Store
-
-## NPM ##
-node_modules/
-
-## webpack ##
-webpack.config.js
-
-
-## API keys ##
+bundle.js
