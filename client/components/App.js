@@ -10,8 +10,8 @@ export default class App extends Component {
 
     this.state = {
       results: categories,
-      currentQuestion: {question: 'is this working?'},
-      answeredQuestions: ['ur mama'],
+      currentQuestion: {},
+      answeredQuestions: [],
       score: 0
     };
   }
@@ -20,16 +20,43 @@ export default class App extends Component {
     //1. A query to /api/categories to get a set of categories
     //2. A set of queries afterwards to /api/category at each category id to get clues for that category
   }
+
+  modifyScore(addOrSub, value, id){
+    if (addOrSub === true){
+      this.setState({
+        score: this.state.score+value
+      })
+    }
+    else{
+      this.setState({
+        score: this.state.score-value
+      })
+    }
+    let updatedAnsweredQuestion = 
+    this.setState({
+      currentQuestion: {},
+      answeredQuestions: [...this.state.answeredQuestions, id]
+    })
+    // answeredQuestions.push(id)
+  }
+
+  selectQuestion(event, question){
+    this.setState({
+      currentQuestion: question
+    })
+  }
+
   render() {
+    console.log(this.state.answeredQuestions)
     return (
       <div id={'app'}>
-        What is Reactor 2?
         <Gameboard currentQuestion = {this.state.currentQuestion }
                  answeredQuestions = { this.state.answeredQuestions }
-                 selectQuestion = {function(){return 'this is a placeholder'}}
+                 selectQuestion = {this.selectQuestion.bind(this)}
                  categories = {this.state.results}/>
-        <Scoreboard />
-        <Response />
+        <Scoreboard score = {this.state.score}/>
+        <Response clueObj= {this.state.currentQuestion}
+                  method = {this.modifyScore.bind(this)}/>
       </div>
     );
   }

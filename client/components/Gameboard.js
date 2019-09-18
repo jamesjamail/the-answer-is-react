@@ -1,20 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Categories from './Categories';
 
 
 const Gameboard = ({currentQuestion, answeredQuestions, categories, selectQuestion}) => {
-  return (
-    <div data-testid="gameboard" id={currentQuestion.question ? 'question' : 'gameboard'}
-    currentQuestion={currentQuestion}
-    answeredQuestions={answeredQuestions}
-    selectQuestion={selectQuestion}
-    categories={categories}>
-
-      {/* was a question clicked?  */}
-      {/* Yes? Show clue */}
-      {/* No? Show Categories */}
-    </div>
-  );
+  if (JSON.stringify(currentQuestion) === JSON.stringify({})) {
+    return (
+      <div data-testid="gameboard" id='gameboard'>
+        
+        <Categories currentQuestion={currentQuestion}
+        answeredQuestions={answeredQuestions}
+        selectQuestion={selectQuestion}
+        categories={categories}/>
+  
+        {/* was a question clicked?  */}
+        {/* Yes? Show clue */}
+        {/* No? Show Categories */}
+      </div>
+    );
+  }
+  else {
+    return (
+    <div id='question'>{currentQuestion.question}</div>
+    )
+  }
 };
 
 Gameboard.propTypes = {

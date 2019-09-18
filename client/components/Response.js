@@ -10,10 +10,23 @@ export default class Response extends Component {
     this.recordResponse = this.recordResponse.bind(this);
   }
   recordResponse(newText) {
-    this.setState({ userResponse: newText });
+    this.setState({ userResponse: newText.target.value });
   }
   submitResponse(event) {
+    let response = this.state.userResponse;
+    if(response === this.props.clueObj.answer){
+      
+      this.props.method(true, this.props.clueObj.value, this.props.clueObj.id)
+    }
+    else{
+      this.props.method(false, this.props.clueObj.value, this.props.clueObj.id)
+    }
+
+    // console.log('something')
     // this function should fire when the user fills the response and hits 'enter'
+    // if (event.value === clueObj.answer){
+    //   setState score += clue
+    // }
       // Is the user response correct? 
       // yes/no? What should happen?
       //remove tile
@@ -21,11 +34,19 @@ export default class Response extends Component {
         //if no, remove points from score
   }
   render(){
+
     return (
       <div id={'response'} data-testid="response">
         <input
           type='text'
           placeholder='Answers go here!'
+          onChange = {this.recordResponse}
+          onKeyDown= { () => {
+              if (event.key === 'Enter'){
+                this.submitResponse()
+              }
+            }
+          }
           // handle data change
           // handle when 'enter' is hit
         >
