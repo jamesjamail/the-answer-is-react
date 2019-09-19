@@ -7,20 +7,20 @@ const Category = ({currentQuestion, answeredQuestions, title, selectQuestion, ca
     <div className={'category' } data-testid="category">
     <div className='categoryTitle'>{title.toUpperCase()}</div>
     {currentClues.map((clue, i) => {
+      var answered = () => { 
+        if (answeredQuestions.indexOf(clue.id) !== -1){
+        return true;
+        } else{
+          return false;
+        }
+      }
       return <Clue key={i} selectQuestion = {selectQuestion}
       currentQuestion = {clue.currentQuestion}
       answeredQuestions = {answeredQuestions}
+      answered = {answered()}
       clueObj = {clue}/>
     })}
 
-
-      {/* <Clue
-      selectQuestion = {selectQuestion}
-      currentQuestion = {currentQuestion}
-      answeredQuestions = {answeredQuestions}
-      clueObj = {categories[0].clues[0].question}/> */}
-      {/* display category */}
-      {/* display clues for each category */}
     </div>
   );
 };
