@@ -21,6 +21,9 @@ export default class Response extends Component {
     else{
       this.props.method(false, this.props.clueObj.value, this.props.clueObj.id)
     }
+    this.setState({
+      userResponse : ''
+    })
 
     // console.log('something')
     // this function should fire when the user fills the response and hits 'enter'
@@ -39,6 +42,7 @@ export default class Response extends Component {
       <div id={'response'} data-testid="response">
         <input
           type='text'
+          value={this.state.userResponse}
           placeholder='Answers go here!'
           onChange = {this.recordResponse}
           onKeyDown= { () => {
@@ -46,10 +50,7 @@ export default class Response extends Component {
                 this.submitResponse()
               }
             }
-          }
-          // handle data change
-          // handle when 'enter' is hit
-        >
+          }>
         </input>
       </div>
     )
