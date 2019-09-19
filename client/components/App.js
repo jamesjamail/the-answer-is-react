@@ -48,16 +48,29 @@ export default class App extends Component {
 
   render() {
     console.log(this.state.answeredQuestions)
-    return (
-      <div id={'app'}>
-        <Gameboard currentQuestion = {this.state.currentQuestion }
-                 answeredQuestions = { this.state.answeredQuestions }
-                 selectQuestion = {this.selectQuestion.bind(this)}
-                 categories = {this.state.results}/>
-        <Scoreboard score = {this.state.score}/>
-        <Response clueObj= {this.state.currentQuestion}
-                  method = {this.modifyScore.bind(this)}/>
-      </div>
-    );
+    if (this.state.currentQuestion.question){
+      return (
+        <div id={'app'}>
+          <Gameboard currentQuestion = {this.state.currentQuestion }
+                   answeredQuestions = { this.state.answeredQuestions }
+                   selectQuestion = {this.selectQuestion.bind(this)}
+                   categories = {this.state.results}/>
+          <Scoreboard score = {this.state.score}/>
+          <Response clueObj= {this.state.currentQuestion}
+                    method = {this.modifyScore.bind(this)}/>
+        </div>
+      );
+    }
+    else{
+      return (
+        <div id={'app'}>
+          <Gameboard currentQuestion = {this.state.currentQuestion }
+                   answeredQuestions = { this.state.answeredQuestions }
+                   selectQuestion = {this.selectQuestion.bind(this)}
+                   categories = {this.state.results}/>
+          <Scoreboard score = {this.state.score}/>
+        </div>
+      );
+    }
   }
 }

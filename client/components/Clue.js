@@ -9,7 +9,7 @@ const Clue = ({clueObj, selectQuestion, answered}) => {
   // empty screen if it was already answered
   if (answered){
     return (
-      <div onClick={(event) => selectQuestion(event, clueObj)} className='clueValue'>-</div>)
+      <div className='clueValue'>-</div>)
   }
   else{
     return (
